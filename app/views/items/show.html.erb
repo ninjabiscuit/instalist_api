@@ -5,5 +5,5 @@
   <%= @item.name %>
 </p>
 
-<%= link_to 'Edit', edit_item_path(@item) %> |
-<%= link_to 'Back', items_path %>
+<%= link_to 'Edit', edit_list_item_path(@list, @item) %> |
+<%= link_to 'Back', list_items_path %>

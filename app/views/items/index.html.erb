@@ -9,19 +9,20 @@
       <th></th>
     </tr>
   </thead>
-
-  <tbody>
-    <% @items.each do |item| %>
-      <tr>
-        <td><%= item.name %></td>
-        <td><%= link_to 'Show', item %></td>
-        <td><%= link_to 'Edit', edit_item_path(item) %></td>
-        <td><%= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
+  <% if @items.present? %>
+    <tbody>
+      <% @items.each do |item| %>
+        <tr>
+          <td><%= item.name %></td>
+          <td><%= link_to 'Show', list_item_path(@list, item) %></td>
+          <td><%= link_to 'Edit', edit_list_item_path(@list, item) %></td>
+          <td><%= link_to 'Destroy', list_item_path(@list, item), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  <% end -%>
 </table>
 
 <br>
 
-<%= link_to 'New item', new_item_path %>
+<%= link_to 'New item', new_list_item_path %>
