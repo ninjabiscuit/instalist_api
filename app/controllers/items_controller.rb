@@ -1,11 +1,13 @@
 class ItemsController < ApplicationController
 
-  respond_to :html, :json
+  respond_to :html, :api_v1
   before_action :set_item, only: [:show, :edit, :update, :destroy]
   before_action :set_list
+  before_action :default_response, except: [:index]
 
   def index
     @items = @list.items
+    respond_with(@items)
   end
 
   def show
@@ -23,23 +25,24 @@ class ItemsController < ApplicationController
     if @item.save
       flash[:notice] = 'Item was successfully created.'
     end
-    respond_with(@list, @item)
   end
 
   def update
     if @item.update(item_params)
       flash[:notice] = 'Item was successfully updated.'
     end
-    respond_with(@list, @item)
   end
 
   def destroy
     @item.destroy
     flash[:notice] = "Successfully destroyed Item."
-    respond_with(@list, @item)
   end
 
   private
+
+    def default_response
+      respond_with(@list, @item)
+    end
 
     def set_item
       @item = Item.find(params[:id])
