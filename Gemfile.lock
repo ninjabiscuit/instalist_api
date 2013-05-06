@@ -28,6 +28,13 @@ GEM
     arel (4.0.0)
     atomic (1.1.8)
     builder (3.1.4)
+    columnize (0.3.6)
+    debugger (1.5.0)
+      columnize (>= 0.3.1)
+      debugger-linecache (~> 1.2.0)
+      debugger-ruby_core_source (~> 1.2.0)
+    debugger-linecache (1.2.0)
+    debugger-ruby_core_source (1.2.0)
     erubis (2.7.0)
     execjs (1.4.0)
       multi_json (~> 1.0)
@@ -101,6 +108,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  debugger
   jquery-rails
   mysql2 (~> 0.3.11)
   pg
