@@ -31,5 +31,11 @@ group :production do
   gem 'pg'
 end
 
+group :test do
+  gem 'factory_girl_rails', '4.2.0'
+  gem 'faker', '1.1.2'
+  gem 'capybara', '2.1.0'
+end
+
 # Use debugger
 gem 'debugger', group: [:development, :test]

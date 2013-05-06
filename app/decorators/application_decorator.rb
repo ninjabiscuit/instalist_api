@@ -5,9 +5,7 @@ class ApplicationDecorator
   end
 
   def self.decorate(object, decorator_class)
-    decorator = decorator_class.new(object)
-    yield decorator if block_given?
-    decorator
+    decorator_class.new(object)
   end
 
   def self.decorates(name)
@@ -30,10 +28,16 @@ class ApplicationDecorator
 
     # (<#Activity id: 1>, :api_v1) => API_V1::ActivityDecorator
     def self.decorator_class_for(resource, format)
-      "#{format.to_s.upcase}::#{resource.class}Decorator".constantize
+      resource_name = collection?(resource) ?
+        resource.name.demodulize : resource.class.name
+      "#{format.to_s.upcase}::#{resource_name}Decorator".constantize
     rescue NameError => e
       raise if e.is_a?(NoMethodError)
       nil
+    end
+
+    def self.collection?(object)
+      object.kind_of?(ActiveRecord::Relation)
     end
 
 end

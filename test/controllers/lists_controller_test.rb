@@ -2,7 +2,7 @@ require 'test_helper'
 
 class ListsControllerTest < ActionController::TestCase
   setup do
-    @list = lists(:one)
+    @list = FactoryGirl.create(:list)
   end
 
   test "should get index" do
