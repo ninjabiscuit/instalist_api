@@ -8,6 +8,10 @@ class ApplicationDecorator
     decorator_class.new(object)
   end
 
+  def self.decorate_collection(object, decorator_class, format)
+    CollectionDecorator.new(object, decorator_class)
+  end
+
   def self.decorates(name)
     define_method(name) do
       @object
@@ -20,13 +24,16 @@ class ApplicationDecorator
 
   def self.decorator_for(resource, format)
     if decorator_class = decorator_class_for(resource, format)
-      decorate(resource, decorator_class)
+      if collection?(resource)
+        decorate_collection(resource, decorator_class)
+      else
+        decorate(resource, decorator_class)
+      end
     end
   end
 
   private
 
-    # (<#Activity id: 1>, :api_v1) => API_V1::ActivityDecorator
     def self.decorator_class_for(resource, format)
       resource_name = collection?(resource) ?
         resource.name.demodulize : resource.class.name
