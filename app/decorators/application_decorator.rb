@@ -1,21 +1,11 @@
 class ApplicationDecorator
 
-  def initialize(object)
-    @object = object
-  end
-
   def self.decorate(object, decorator_class)
     decorator_class.new(object)
   end
 
-  def self.decorate_collection(object, decorator_class, format)
+  def self.decorate_collection(object, decorator_class)
     CollectionDecorator.new(object, decorator_class)
-  end
-
-  def self.decorates(name)
-    define_method(name) do
-      @object
-    end
   end
 
   def self.has_decorator_for?(resource, format)
@@ -24,11 +14,8 @@ class ApplicationDecorator
 
   def self.decorator_for(resource, format)
     if decorator_class = decorator_class_for(resource, format)
-      if collection?(resource)
-        decorate_collection(resource, decorator_class)
-      else
-        decorate(resource, decorator_class)
-      end
+      decorate_method = collection?(resource) ? "decorate_collection" : "decorate"
+      send(decorate_method, resource, decorator_class)
     end
   end
 

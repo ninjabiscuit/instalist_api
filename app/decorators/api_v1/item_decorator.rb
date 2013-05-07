@@ -1,4 +1,4 @@
-class API_V1::ItemDecorator < ApplicationDecorator
+class API_V1::ItemDecorator < BaseDecorator
 
   decorates :item
 
@@ -6,7 +6,6 @@ class API_V1::ItemDecorator < ApplicationDecorator
     {
       id: item.id,
       name: item.name,
-      list_id: item.list_id,
       status: item.status
     }.to_json(options)
   end

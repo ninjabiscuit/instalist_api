@@ -14,7 +14,7 @@ class CollectionDecorator < SimpleDelegator
     end
   end
 
-  def method_missing(method, args)
+  def method_missing(method, *args)
     map {|o| o.send(method, args) }
   end
 

@@ -1,4 +1,4 @@
-class API_V1::ListDecorator < ApplicationDecorator
+class API_V1::ListDecorator < BaseDecorator
 
   decorates :list
 
