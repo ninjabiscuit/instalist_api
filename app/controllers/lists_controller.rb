@@ -1,24 +1,19 @@
-class ListsController < ApplicationController
-
-  respond_to :html, :api_v1
-  before_action :set_list, only: [:show, :edit, :update, :destroy]
+class ListsController < ApiController
 
   def index
-    @lists = List.all
-    respond_with(@lists)
+    render json: List.all
   end
 
   def show
-    respond_with(@list)
+    render json: @list
   end
 
   def new
-    @list = List.new
-    respond_with(@list)
+    render json: List.new
   end
 
   def edit
-    respond_with(@list)
+    render json: @list
   end
 
   def create
@@ -26,27 +21,23 @@ class ListsController < ApplicationController
     if @list.save
       flash[:notice] = 'List was successfully created.'
     end
-    respond_with(@list)
+    render json: @list
   end
 
   def update
     if @list.update(list_params)
       flash[:notice] = 'List was successfully updated.'
     end
-    respond_with(@list)
+    render json: @list
   end
 
   def destroy
     @list.destroy
     flash[:notice] = "Successfully destroyed List."
-    respond_with(@list)
+    render json: @list
   end
 
   private
-
-    def set_list
-      @list = List.find(params[:id])
-    end
 
     def list_params
       params.require(:list).permit(:name)
