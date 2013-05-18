@@ -16,9 +16,4 @@ class ViewingAListTest < ActionDispatch::IntegrationTest
     assert_equal @list.name, json['name']
   end
 
-  test "I can get a list" do
-    visit list_path(@list)
-    assert page.has_content? @list.name
-  end
-
 end

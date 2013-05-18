@@ -16,9 +16,4 @@ class ViewingAnItemTest < ActionDispatch::IntegrationTest
     assert_equal @item.name, json['name']
   end
 
-  test "I can get an item" do
-    visit list_item_path(@item.list, @item)
-    assert page.has_content? @item.name
-  end
-
 end

@@ -4,27 +4,15 @@ require 'rails/test_help'
 require 'capybara/rails'
 
 class ActiveSupport::TestCase
+
   ActiveRecord::Migration.check_pending!
+  include ApiHelper
 
-  # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
-  #
-  # Note: You'll currently still have to declare fixtures explicitly in integration tests
-  # -- they do not yet inherit this setting
-  fixtures :all
-
-  # Add more helper methods to be used by all tests here...
 end
 
 class ActionDispatch::IntegrationTest
 
   include Capybara::DSL
-
-  API_MIME_TYPE_V1 = "application/vnd.instalist.api.v1+json"
-
-  %w(get put post delete).each do |verb|
-    define_method "api_#{verb}" do |url, params = {}, headers = {}|
-      send(verb, url, params, { 'HTTP_ACCEPT' => API_MIME_TYPE_V1 }.merge(headers))
-    end
-  end
+  include ApiHelper
 
 end

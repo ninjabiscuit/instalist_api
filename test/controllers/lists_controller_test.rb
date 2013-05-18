@@ -6,44 +6,41 @@ class ListsControllerTest < ActionController::TestCase
   end
 
   test "should get index" do
-    get :index
+    api_get :index
     assert_response :success
-    assert_not_nil assigns(:lists)
   end
 
   test "should get new" do
-    get :new
+    api_get :new
     assert_response :success
   end
 
   test "should create list" do
     assert_difference('List.count') do
-      post :create, list: { name: @list.name }
+      api_post :create, list: { name: @list.name }
     end
-
-    assert_redirected_to list_path(assigns(:list))
+    assert_response :success
   end
 
   test "should show list" do
-    get :show, id: @list
+    api_get :show, id: @list
     assert_response :success
   end
 
   test "should get edit" do
-    get :edit, id: @list
+    api_get :edit, id: @list
     assert_response :success
   end
 
   test "should update list" do
     patch :update, id: @list, list: { name: @list.name }
-    assert_redirected_to list_path(assigns(:list))
+    assert_response :success
   end
 
   test "should destroy list" do
     assert_difference('List.count', -1) do
-      delete :destroy, id: @list
+      api_delete :destroy, id: @list
     end
-
-    assert_redirected_to lists_path
+    assert_response :success
   end
 end

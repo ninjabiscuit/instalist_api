@@ -8,9 +8,12 @@ class ListingListsTest < ActionDispatch::IntegrationTest
   end
 
   test "I can get the lists index page" do
-    visit lists_path
-    assert page.has_content? @list1.name
-    assert page.has_content? @list2.name
+    api_get lists_path
+    assert_equal 200, response.status
+    json = JSON.parse(response.body)
+    assert_equal 2, json.length
+    assert_not_nil json.detect {|a| a['id'] == @list1.id }
+    assert_not_nil json.detect {|a| a['id'] == @list2.id }
   end
 
 end

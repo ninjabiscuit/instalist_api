@@ -15,12 +15,18 @@ class ListingItemsTest < ActionDispatch::IntegrationTest
   end
 
   test "I can get the items index page" do
-    visit list_items_path(@list1)
-    assert page.has_content? @item1.name
-    assert page.has_content? @item2.name
 
-    assert page.has_no_content? @item3.name
-    assert page.has_no_content? @item4.name
+    api_get list_items_path(@list1)
+
+    assert_equal 200, response.status
+    json = JSON.parse(response.body)
+    assert_equal 2, json.length
+
+    assert_not_nil json.detect {|a| a['name'] == @item1.name }
+    assert_not_nil json.detect {|a| a['name'] == @item2.name }
+
+    assert_nil json.detect {|a| a['name'] == @item3.name }
+    assert_nil json.detect {|a| a['name'] == @item4.name }
   end
 
 end
