@@ -10,11 +10,6 @@ class ListsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should get new" do
-    api_get :new
-    assert_response :success
-  end
-
   test "should create list" do
     assert_difference('List.count') do
       api_post :create, list: { name: @list.name }
@@ -24,11 +19,6 @@ class ListsControllerTest < ActionController::TestCase
 
   test "should show list" do
     api_get :show, id: @list
-    assert_response :success
-  end
-
-  test "should get edit" do
-    api_get :edit, id: @list
     assert_response :success
   end
 

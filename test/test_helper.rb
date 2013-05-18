@@ -6,13 +6,13 @@ require 'capybara/rails'
 class ActiveSupport::TestCase
 
   ActiveRecord::Migration.check_pending!
-  include ApiHelper
+  include ApiTestHelper
 
 end
 
 class ActionDispatch::IntegrationTest
 
   include Capybara::DSL
-  include ApiHelper
+  include ApiTestHelper
 
 end

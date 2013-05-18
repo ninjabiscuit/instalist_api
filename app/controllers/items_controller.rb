@@ -8,14 +8,6 @@ class ItemsController < ApiController
     render json: @item
   end
 
-  def new
-    render json: Item.new
-  end
-
-  def edit
-    render json: @item
-  end
-
   def create
     @item = List.find(params[:list_id]).items.build(item_params)
     if @item.save

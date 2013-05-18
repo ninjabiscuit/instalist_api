@@ -10,11 +10,6 @@ class ItemsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should get new" do
-    api_get :new, list_id: @item.list.to_param
-    assert_response :success
-  end
-
   test "should create item" do
     assert_difference('Item.count') do
       api_post :create, item: { name: "blah" }, list_id: @item.list.id
@@ -25,11 +20,6 @@ class ItemsControllerTest < ActionController::TestCase
 
   test "should show item" do
     api_get :show, id: @item, list_id: @item.list.to_param
-    assert_response :success
-  end
-
-  test "should get edit" do
-    api_get :edit, id: @item, list_id: @item.list.to_param
     assert_response :success
   end
 

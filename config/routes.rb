@@ -1,6 +1,8 @@
 InstalistApi::Application.routes.draw do
-  resources :lists do
-    resources :items
+  resources :users
+
+  resources :lists, except: [:new, :edit] do
+    resources :items, except: [:new, :edit]
   end
   root 'lists#index'
 end

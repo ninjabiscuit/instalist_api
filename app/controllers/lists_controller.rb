@@ -8,14 +8,6 @@ class ListsController < ApiController
     render json: @list
   end
 
-  def new
-    render json: List.new
-  end
-
-  def edit
-    render json: @list
-  end
-
   def create
     @list = List.new(list_params)
     if @list.save
