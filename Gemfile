@@ -14,6 +14,9 @@ gem "active_model_serializers", "~> 0.8.1"
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 
+# Use ActiveModel has_secure_password
+gem 'bcrypt-ruby', '~> 3.0.0'
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false

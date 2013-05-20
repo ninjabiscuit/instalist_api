@@ -29,6 +29,7 @@ GEM
       tzinfo (~> 0.3.37)
     arel (4.0.0)
     atomic (1.1.8)
+    bcrypt-ruby (3.0.1)
     builder (3.1.4)
     capybara (2.1.0)
       mime-types (>= 1.16)
@@ -126,6 +127,7 @@ PLATFORMS
 
 DEPENDENCIES
   active_model_serializers (~> 0.8.1)
+  bcrypt-ruby (~> 3.0.0)
   capybara (= 2.1.0)
   debugger
   factory_girl_rails (= 4.2.0)
